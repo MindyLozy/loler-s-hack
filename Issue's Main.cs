@@ -69,14 +69,16 @@ public override void OnGUI()
             windowRect = GUI.Window(0, windowRect, (GUI.WindowFunction)DrawMenu, "<color=white>Issue's Hack</color>");
         }
         
-        private void DrawMenu(int windowID)
-        {
-            // fixed maybe
-            GUI.DragWindow(new Rect(0, 0, windowRect.width, 20));
-            
-            currentTab = GUILayout.Toolbar(currentTab, tabNames);
-            
-            GUILayout.BeginVertical();
+        public override void OnGUI()
+{
+    if (!menuOpen) return;
+
+    GUI.color = Color.white;
+    GUI.backgroundColor = Color.black;
+    
+    // Используем menuRect, если windowRect выдает ошибку
+    menuRect = GUI.Window(0, menuRect, (GUI.WindowFunction)DrawMenu, "<color=white>Issue's Hack</color>");
+}
             switch (currentTab)
             {
                 // next
